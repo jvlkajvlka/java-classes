@@ -1,8 +1,8 @@
 package pckg;
 
 public class Power extends Node {
-    double p;
-    Node arg;
+    public double p;
+    public Node arg;
     Power(Node n,double p){
         arg = n;
         this.p = p;
@@ -33,6 +33,12 @@ public class Power extends Node {
         b.append("^");
         b.append(p);
         return b.toString();
+    }
+    @Override
+    Node diff(Variable var) {
+        Prod r =  new Prod(sign*p,new Power(arg,p-1));
+        r.mul(arg.diff(var));
+        return r;
     }
 
 }

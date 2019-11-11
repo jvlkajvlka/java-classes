@@ -40,6 +40,16 @@ public class Document {
         // zapisz niezbędne znaczniki HTML
         // dodaj tytuł i obrazek
         // dla każdej sekcji wywołaj section.writeHTML(out)
+        out.print("<html>\n<body>\n");
+        photo.writeHTML(out);
+        out.printf("<h1>%s</h1>\n", title);
+
+        for (Section section: sections) {
+            section.writeHTML(out);
+        }
+
+        out.print("</body>\n</html>");
+
     }
 
 

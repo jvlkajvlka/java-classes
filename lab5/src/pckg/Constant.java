@@ -26,5 +26,10 @@ public class Constant extends Node {
         return sgn+format.format(value);
     }
 
+    @Override
+    Node diff(Variable var) {
+        return new Constant(0);
+    }
+
 
 }

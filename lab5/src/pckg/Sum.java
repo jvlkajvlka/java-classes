@@ -65,4 +65,14 @@ public class Sum extends Node {
         if(sign<0)b.append(")");
         return b.toString();
     }
+
+
+    Node diff(Variable var) {
+        Sum r = new Sum();
+        for(Node n:args){
+            r.add(n.diff(var));
+        }
+        return r;
+    }
+
 }

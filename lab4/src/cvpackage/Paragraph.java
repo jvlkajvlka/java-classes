@@ -1,5 +1,7 @@
 package cvpackage;
 
+import java.io.PrintStream;
+
 public class Paragraph {
     String content;
 
@@ -8,8 +10,8 @@ public class Paragraph {
         return this;
     }
 
-    void writeHTML(){
-
+    void writeHTML(PrintStream out){
+        out.printf("<p>%s</p>\n", content);
     }
 
 

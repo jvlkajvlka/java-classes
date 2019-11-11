@@ -12,6 +12,6 @@ public class ListItem {
         return this;
     }
     void writeHTML(PrintStream out) {
-
+        out.printf("\t<li>%s</li>\n", item);
     }
 }

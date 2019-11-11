@@ -15,6 +15,11 @@ public class UnorderedList {
 
 
     void writeHTML(PrintStream out){
+        out.print("<ul>\n");
+        for (ListItem item: ListItems) {
+            item.writeHTML(out);
+        }
+        out.print("</ul>\n");
 
     }
 }

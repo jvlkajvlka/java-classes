@@ -29,6 +29,11 @@ public class Section {
         return this;
     }
     void writeHTML(PrintStream out){
+        out.printf("<h2>%s</h2>\n", title);
+        for (Paragraph paragraph: paragraps) {
+            paragraph.writeHTML(out);
+        }
+
 
     }
 
