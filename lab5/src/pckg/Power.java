@@ -41,4 +41,9 @@ public class Power extends Node {
         return r;
     }
 
+    @Override
+    boolean isDiffZero(Variable variable) {
+        return false;
+    }
+
 }

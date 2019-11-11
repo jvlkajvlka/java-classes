@@ -62,13 +62,19 @@ public class Prod extends Node {
         //zaimplementuj
         for(int i = 0; i<args.size(); i++) {
             n = args.get(i);
+            if( i!=0){
+                b.append("*");
+            }
+            if (n.sign < 0) {
+                b.append("*(-");
+
+            }
             b.append(n.toString());
-            b.append("*");
         }
         if(sign<0)b.append(")");
         return b.toString();
     }
-
+    @Override
     Node diff(Variable var) {
         Sum r = new Sum();
         for(int i=0;i<args.size();i++){
@@ -83,4 +89,8 @@ public class Prod extends Node {
         return r;
     }
 
+    @Override
+    boolean isDiffZero(Variable variable) {
+        return args.stream().anyMatch(node -> (node instanceof Constant && node.evaluate() == 0));
+    }
 }

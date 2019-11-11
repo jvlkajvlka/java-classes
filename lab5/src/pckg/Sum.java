@@ -66,7 +66,7 @@ public class Sum extends Node {
         return b.toString();
     }
 
-
+    @Override
     Node diff(Variable var) {
         Sum r = new Sum();
         for(Node n:args){
@@ -75,4 +75,8 @@ public class Sum extends Node {
         return r;
     }
 
+    @Override
+    boolean isDiffZero(Variable variable) {
+        return args.stream().allMatch(node -> node.isDiffZero(variable));
+    }
 }

@@ -9,7 +9,7 @@ public class main {
 //        buildAndEvaluate();
 //        defineCircle();
         diffCircle();
-        diffPoly();
+//        diffPoly();
     }
 
     static void buildAndPrint(){

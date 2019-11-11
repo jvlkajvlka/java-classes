@@ -22,6 +22,16 @@ public class Variable extends Node {
         String sgn=sign<0?"-":"";
         return sgn+name;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    boolean isDiffZero(Variable variable) {
+        return !variable.getName().equals(name);
+    }
+
     @Override
     Node diff(Variable var) {
         if(var.name.equals(name))return new Constant(sign);

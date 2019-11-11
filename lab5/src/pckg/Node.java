@@ -33,5 +33,6 @@ abstract public class Node {
 
         abstract Node diff(Variable var);
 
+        abstract boolean isDiffZero(Variable variable);
 }
 

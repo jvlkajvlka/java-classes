@@ -1,7 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a85f33a7-cd50-49af-bfed-49f4734ed3bb" name="Default Changelist" comment="" />
+    <list default="true" id="a85f33a7-cd50-49af-bfed-49f4734ed3bb" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../lab4/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test/files/MatrixTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab2.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab2/META-INF/lab2.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab2/files/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab2/files/Matrix.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/lab2/files/MatrixTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/files/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/files/Matrix.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab4/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab4/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab4/out/production/lab4/cvpackage/Document.class" beforeDir="false" afterPath="$PROJECT_DIR$/../lab4/out/production/lab4/cvpackage/Document.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab4/out/production/lab4/cvpackage/ListItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/../lab4/out/production/lab4/cvpackage/ListItem.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab4/out/production/lab4/cvpackage/Paragraph.class" beforeDir="false" afterPath="$PROJECT_DIR$/../lab4/out/production/lab4/cvpackage/Paragraph.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab4/out/production/lab4/cvpackage/ParagraphWithList.class" beforeDir="false" afterPath="$PROJECT_DIR$/../lab4/out/production/lab4/cvpackage/ParagraphWithList.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab4/out/production/lab4/cvpackage/Section.class" beforeDir="false" afterPath="$PROJECT_DIR$/../lab4/out/production/lab4/cvpackage/Section.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab4/out/production/lab4/cvpackage/UnorderedList.class" beforeDir="false" afterPath="$PROJECT_DIR$/../lab4/out/production/lab4/cvpackage/UnorderedList.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab4/src/cvpackage/Document.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab4/src/cvpackage/Document.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab4/src/cvpackage/ListItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab4/src/cvpackage/ListItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab4/src/cvpackage/Paragraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab4/src/cvpackage/Paragraph.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab4/src/cvpackage/ParagraphWithList.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab4/src/cvpackage/ParagraphWithList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab4/src/cvpackage/Section.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab4/src/cvpackage/Section.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab4/src/cvpackage/UnorderedList.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab4/src/cvpackage/UnorderedList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab5/out/production/lab5/pckg/Constant.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab5/out/production/lab5/pckg/Node.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab5/out/production/lab5/pckg/Power.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab5/out/production/lab5/pckg/Prod.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab5/out/production/lab5/pckg/Sum.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab5/out/production/lab5/pckg/Test.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab5/out/production/lab5/pckg/Variable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab5/out/production/lab5/pckg/main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab5/src/pckg/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab5/src/pckg/Constant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab5/src/pckg/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab5/src/pckg/Node.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab5/src/pckg/Variable.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab5/src/pckg/Variable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab5/src/pckg/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab5/src/pckg/main.java" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,12 +54,17 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="ProjectId" id="1SEk1qNpFn01W7fqYIsnh7Bse1v" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
@@ -133,20 +176,17 @@
     </task>
     <servers />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/files/Matrix.java</url>
-          <line>101</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/files/Matrix.java</url>
-          <line>66</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
