@@ -138,6 +138,18 @@ public class Matrix {
     }
 
 
+// ZADANIE Z KARTKÓWKI GRUPA C
+    Matrix sumCols(){
+        Matrix c = new Matrix( new double[rows][1]);
+
+        for(int i=0; i<rows; i++){
+            for(int j=0; j<cols;j++){
+                c.data[i]+=this.get(i,j);
+            }
+        }
+        return c;
+    }
+
 }
 
 
