@@ -88,11 +88,27 @@ public class MatrixTest {
 
     @org.junit.Test
     public void shape() {
+        double [][] mat = new double[4][4];
+        Matrix m = new Matrix(mat);
+        int []mShape = m.shape();
+        assertEquals(mShape[0],4);
 
     }
 
     @org.junit.Test
     public void add() {
+        Matrix smallMatrix = new Matrix(new double[][]{
+                {1, 2},
+                {3, 1}
+        });
+        Matrix other = new Matrix(new double[][] {{1,1}, {1,1}});
+        Matrix result = smallMatrix.add(other);
+
+        assertEquals(result.data[0],2,0);
+        assertEquals(result.data[3],2,0);
+
+
+
     }
 
     @org.junit.Test
@@ -119,5 +135,10 @@ public class MatrixTest {
 
     @org.junit.Test
     public void dot() {
+    }
+
+    @org.junit.Test
+    public void eye(){
+
     }
 }

@@ -84,7 +84,9 @@ public class Prod extends Node {
                 if(j==i)m.mul(f.diff(var));
                 else m.mul(f);
             }
-            r.add(m);
+            if (m.isDiffZero(var)) {
+                r.add(m);
+            }
         }
         return r;
     }

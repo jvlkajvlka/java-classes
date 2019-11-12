@@ -1,5 +1,7 @@
 package files;
 
+import static java.lang.Math.pow;
+
 public class Matrix {
     double[]data;
     int rows;
@@ -135,6 +137,14 @@ public class Matrix {
         }
 
         return newMatrix;
+    }
+
+    double frobenius(){
+        double sum = 0 ;
+        for(int i=0; i<data.length; i++){
+            sum+=pow(data[i],2);
+        }
+        return sum;
     }
 
 
