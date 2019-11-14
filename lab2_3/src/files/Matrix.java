@@ -128,16 +128,20 @@ public class Matrix {
         }
         Matrix newMatrix = new Matrix(this.rows,m.cols);
 
-        for(int i = 0 ; i<newMatrix.rows ; i++){
-            for(int j = 0; j<newMatrix.cols ;j++){
-                for (int k = 0; k<this.cols; k++) {
-                    newMatrix.data[i*newMatrix.cols+j] += this.get(i,k)+m.get(k,j);
+        for (int i=0; i<newMatrix.rows; i++) {
+            for (int j=0; j<newMatrix.cols; j++) {
+                for (int k=0; k<this.cols; k++) {
+                    double eq = get(i, k) * m.get(k, j);
+                    newMatrix.set(i, j, newMatrix.get(i,j) + eq);
                 }
             }
         }
-
         return newMatrix;
     }
+
+
+
+
 
     double frobenius(){
         double sum = 0 ;

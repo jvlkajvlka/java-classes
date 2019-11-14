@@ -4,6 +4,11 @@ import static org.junit.Assert.*;
 
 public class MatrixTest {
 
+    Matrix smallMatrix = new Matrix(new double[][] {
+            {2, 4},
+            {6, 8}
+    });
+
     @org.junit.Test
     public void Matrix(){
         int row=2;
@@ -97,15 +102,12 @@ public class MatrixTest {
 
     @org.junit.Test
     public void add() {
-        Matrix smallMatrix = new Matrix(new double[][]{
-                {1, 2},
-                {3, 1}
-        });
+
         Matrix other = new Matrix(new double[][] {{1,1}, {1,1}});
         Matrix result = smallMatrix.add(other);
 
-        assertEquals(result.data[0],2,0);
-        assertEquals(result.data[3],2,0);
+        assertEquals(result.data[0],3,0);
+        assertEquals(result.data[3],9,0);
 
 
 
@@ -127,18 +129,44 @@ public class MatrixTest {
 
     @org.junit.Test
     public void mul() {
+
+        Matrix other = new Matrix(new double[][] {{2, 2}, {2, 2}});
+        Matrix result = smallMatrix.mul(other);
+        Matrix toCheck = new Matrix(new double[][]{{4, 8},{12, 16}});
+        for(int i=0; i<result.rows*result.cols; i++){
+            assertEquals(result.data[i], toCheck.data[i],0);
+        }
+
+
     }
 
     @org.junit.Test
     public void div() {
+        Matrix other = new Matrix(new double[][] {{2, 2}, {2, 2}});
+        Matrix result = smallMatrix.div(other);
+        Matrix toCheck = new Matrix(new double[][]{{1,2},{3, 4}});
+        for(int i=0; i<result.rows*result.cols; i++){
+            assertEquals(result.data[i], toCheck.data[i],0);
+        }
     }
 
     @org.junit.Test
     public void dot() {
+
+       try{Matrix result = smallMatrix.dot(smallMatrix);
+           Matrix toCheck = new Matrix(new double[][]{{28,40},{60,88}});
+           for(int i=0; i<result.rows*result.cols; i++){
+               assertEquals(result.data[i], toCheck.data[i],0);
+           }
+       }
+       catch(Exception e){
+           System.out.println(e.getMessage());
+       }
+
     }
 
     @org.junit.Test
     public void eye(){
-
+        assertEquals((smallMatrix.frobenius()), 120,0);
     }
 }
