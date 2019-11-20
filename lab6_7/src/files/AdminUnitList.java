@@ -14,6 +14,8 @@ import java.util.stream.Stream;
 
 public class AdminUnitList {
     List<AdminUnit> units = new ArrayList<>();
+    Map<Long, AdminUnit> idToUnit = new HashMap<>();
+    Map<AdminUnit, Long> unitToParentId = new HashMap<>();
 
     /**
      * Czyta rekordy pliku i dodaje do listy
@@ -85,5 +87,12 @@ public class AdminUnitList {
         return ret;
     }
 
+
+    //uzupelnienie brakujacych wartosci dla wszystkich jednostek
+    public void fixAll() {
+        for (AdminUnit u : units) {
+            u.fixMissingValues();
+        }
+    }
 
 }
