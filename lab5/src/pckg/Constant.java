@@ -27,7 +27,8 @@ public class Constant extends Node {
     }
 
     @Override
-    Node diff(Variable var) {
+    public Node diff(Variable v)
+    {
         return new Constant(0);
     }
 

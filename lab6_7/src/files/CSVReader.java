@@ -1,189 +1,139 @@
 package files;
 
 import java.io.*;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class CSVReader {
     BufferedReader reader;
     String delimiter;
     boolean hasHeader;
-    String[]current;
 
-    // nazwy kolumn w takiej kolejności, jak w pliku
     List<String> columnLabels = new ArrayList<>();
-    // odwzorowanie: nazwa kolumny -> numer kolumny
-    Map<String,Integer> columnLabelsToInt = new HashMap<>();
+    Map<String, Integer> columnLabelsToInt;
+    String[] current;
 
     /**
-     *
-     * @param filename - nazwa pliku
+     * @param filename  - nazwa pliku
      * @param delimiter - separator pól
      * @param hasHeader - czy plik ma wiersz nagłówkowy
      */
-    public CSVReader(String filename,String delimiter,boolean hasHeader) throws IOException {
-        this(new BufferedReader(new FileReader(filename)),delimiter,hasHeader);
+    public CSVReader(String filename, String delimiter, boolean hasHeader) throws FileNotFoundException, IOException {
+        this(new FileReader(filename), delimiter, hasHeader);
     }
 
-    public CSVReader(Reader reader, String delimiter, boolean hasHeader) throws IOException {
-        this.reader = (BufferedReader) reader;
+    public CSVReader(String filename, String delimiter) throws FileNotFoundException, IOException {
+        this(filename, delimiter, true);
+    }
+
+    public CSVReader(String filename) throws FileNotFoundException, IOException {
+        this(filename, ",", true);
+    }
+
+    public CSVReader(Reader freader, String delimiter, boolean hasHeader) throws FileNotFoundException, IOException {
+        this.reader = new BufferedReader(freader);
         this.delimiter = delimiter;
         this.hasHeader = hasHeader;
-        if(hasHeader)parseHeader();
+        if (hasHeader)
+            parseHeader();
+        else
+            columnLabelsToInt = new HashMap<>();
     }
-
-    public CSVReader(String filename, String delimiter) throws IOException {
-
-        this(filename,delimiter, false);
-    }
-
-    public CSVReader(String filename) throws IOException {
-       this(filename, "" );
-
-   }
 
     void parseHeader() throws IOException {
-        // wczytaj wiersz
-        String line  = null;
-        line = reader.readLine();
-
-        if(line==null){
+        String line = reader.readLine();
+        if (line == null)
             return;
-        }
-        // podziel na pola
-        String[]header = line.split(delimiter);
-        // przetwarzaj dane w wierszu
-        for(int i=0;i<header.length;i++){
-            // dodaj nazwy kolumn do columnLabels i numery do columnLabelsToInt
+        String[] header = line.split(delimiter);
+        columnLabelsToInt = new HashMap<>(header.length);
+        for (int i = 0; i < header.length; i++) {
             columnLabels.add(header[i]);
-            columnLabelsToInt.put(header[i],i);
+            columnLabelsToInt.put(header[i], i);
         }
     }
 
-    boolean next() throws IOException {
-        // czyta następny wiersz, dzieli na elementy i przypisuje do current
-        //
-        String line  = null;
-        line = reader.readLine();
-
-        if(line==null){
+    public boolean next() throws IOException {
+        String line = reader.readLine();
+        if (line == null || line.length() < 1)
             return false;
+        String[] quotes = line.split("[,]{0,1}[\"']{1}[,]{0,1}");
+        List<String> fields = new ArrayList<>();
+        for (var i = 0; i < quotes.length; i++) {
+            if (i % 2 == 1) {
+                fields.add(quotes[i]);
+                continue;
+            }
+            String[] part = quotes[i].split(delimiter);
+            if (part.length > 0)
+                fields.addAll(Arrays.asList(part));
         }
-        // podziel na pola
-        current = line.split(delimiter);
+        current = new String[fields.size()];
+        current = fields.toArray(current);
         return true;
-
     }
 
-    List<String> getColumnLabels(){
+    public String get(int index) {
+        return current[index];
+    }
+
+    public String get(String index) {
+        return current[columnLabelsToInt.get(index)];
+    }
+
+    public int getInt(String index) {
+        if (isMissing(index))
+            return 0;
+        return Integer.parseInt(get(index));
+    }
+
+    public long getLong(String index) {
+        if (isMissing(index))
+            return 0;
+        return Long.parseLong(get(index));
+    }
+
+    public double getDouble(String index) {
+        if (isMissing(index))
+            return 0;
+        return Double.parseDouble(get(index));
+    }
+
+    public int getInt(int index) {
+        if (isMissing(index))
+            return 0;
+        return Integer.parseInt(get(index));
+    }
+
+    public long getLong(int index) {
+        if (isMissing(index))
+            return 0;
+        return Long.parseLong(get(index));
+    }
+
+    public double getDouble(int index) {
+        if (isMissing(index))
+            return 0;
+        return Double.parseDouble(get(index));
+    }
+
+    public List<String> getColumnLabels() {
         return columnLabels;
     }
 
-    int getRecordLength(){
+    public int getRecordLength() {
         return current.length;
     }
 
-    public boolean isMissing(int columnIndex){
-        return columnIndex >= this.getRecordLength() || Objects.equals(current[columnIndex], "");
+    public boolean isMissing(int index) {
+        if (index < 0 || index >= current.length)
+            return true;
+        String val = get(index);
+        return val.length() <= 0;
     }
 
-    //analogiczny dostęp przez etykietę kolumny
-    public boolean isMissing(String columnLabel){
-        return columnLabelsToInt.get(columnLabel) >= this.getRecordLength() || current[columnLabelsToInt.get(columnLabel)].equals("");
-    }
-
-    public String get(int columnIndex){
-        if(columnIndex>current.length || columnIndex<0 || Objects.equals(current[columnIndex], "")) {
-            throw new RuntimeException("Coś nie tak z tymi kolumnami");
-        }
-        return current[columnIndex];
-    }
-
-    //zwraca wartość jako String, raczej pusty tekst, a nie null
-    public String get(String columnLabel){
-        if(columnLabelsToInt.get(columnLabel)>current.length || columnLabelsToInt.get(columnLabel)<0 ||
-                Objects.equals(current[columnLabelsToInt.get(columnLabel)], "")) {
-            throw new RuntimeException("Coś nie tak z tymi kolumnami");
-        }
-        return current[columnLabelsToInt.get(columnLabel)];
-    }
-
-    //funkcja konwertuje wartość do int, użyj Integer.parseInt()
-    //funkcja wygeneruje wyjątek, jeśli pole było puste
-    public int getInt(int columnIndex){
-        if(columnIndex>current.length || columnIndex<0 || Objects.equals(current[columnIndex], "")) {
-            throw new RuntimeException("Coś nie tak z tymi kolumnami");
-        }
-        return Integer.parseInt(current[columnIndex]);
-    }
-
-    public int getInt(String columnLabel){
-        if(columnLabelsToInt.get(columnLabel)>current.length || columnLabelsToInt.get(columnLabel)<0 ||
-                Objects.equals(current[columnLabelsToInt.get(columnLabel)], "")) {
-            throw new RuntimeException("Coś nie tak z tymi kolumnami");
-        }
-        return Integer.parseInt(this.get(columnLabel)); //Integer.parseInt(current[columnLabelsToInt.get(columnLabel)])
-    }
-
-    public long getLong(int columnIndex){
-        if(columnIndex>current.length || columnIndex<0 || Objects.equals(current[columnIndex], "")) {
-            throw new RuntimeException("Coś nie tak z tymi kolumnami");
-        }
-        return Long.parseLong(current[columnIndex]);
-    }
-
-    public long getLong(String columnLabel){
-        if(columnLabelsToInt.get(columnLabel)>current.length || columnLabelsToInt.get(columnLabel)<0 ||
-                Objects.equals(current[columnLabelsToInt.get(columnLabel)], "")) {
-            throw new RuntimeException("Coś nie tak z tymi kolumnami");
-        }
-        return Long.parseLong(this.get(columnLabel));
-    }
-
-    public double getDouble(int columnIndex){
-        if(columnIndex>current.length || columnIndex<0 || Objects.equals(current[columnIndex], "")) {
-            throw new RuntimeException("Coś nie tak z tymi kolumnami");
-        }
-        return Double.parseDouble(current[columnIndex]);
-    }
-
-    public double getDouble(String columnLabel){
-        if(columnLabelsToInt.get(columnLabel)>current.length || columnLabelsToInt.get(columnLabel)<0 ||
-                Objects.equals(current[columnLabelsToInt.get(columnLabel)], "")) {
-            throw new RuntimeException("Coś nie tak z tymi kolumnami");
-        }
-        return Double.parseDouble(this.get(columnLabel));
-    }
-
-    public String[] split(String line) {
-        String[] splitLine = line.split(this.delimiter + "(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
-
-        for (int i = 0; i < splitLine.length; i++) {
-            splitLine[i] = this.trimQuotes(splitLine[i]);
-        }
-        return splitLine;
-    }
-
-    public String trimQuotes(String str) {
-        return str.replaceAll("^\"", "").replaceAll("\"$", "");
-    }
-
-    public LocalDate getDate(int columnIndex, DateTimeFormatter format){
-        return LocalDate.parse(current[columnIndex],format);
-    }
-
-    public LocalDate getDate(String columnLabel, DateTimeFormatter format){
-        return LocalDate.parse(current[columnLabelsToInt.get(columnLabel)], format);
-    }
-
-    public LocalTime getTime(int columnIndex, DateTimeFormatter format){
-        return LocalTime.parse(current[columnIndex],format);
-    }
-
-    public LocalTime getTime(String columnLabel, DateTimeFormatter format){
-        return LocalTime.parse(current[columnLabelsToInt.get(columnLabel)], format);
+    public boolean isMissing(String index) {
+        if (columnLabelsToInt.containsKey(index))
+            return isMissing(columnLabelsToInt.get(index));
+        else
+            return true;
     }
 }
-

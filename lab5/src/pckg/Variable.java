@@ -33,11 +33,12 @@ public class Variable extends Node {
     }
 
     @Override
-    Node diff(Variable var) {
-        if(var.name.equals(name))return new Constant(sign);
-        else return new Constant(0);
+    Node diff(Variable variable) {
+        if (variable.getName().equals(name)) {
+            return new Constant(1);
+        }
+        return new Constant(0);
     }
-
 
 
 }

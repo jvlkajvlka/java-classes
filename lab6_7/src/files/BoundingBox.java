@@ -73,7 +73,7 @@ public class BoundingBox {
      * @return
      */
     boolean isEmpty(){
-        return xmax.isNaN() || xmin.isNaN() || ymax.isNaN() || ymin.isNaN();
+        return Double.isNaN(xmin) && Double.isNaN(xmax) && Double.isNaN(ymin) && Double.isNaN(ymax);
     }
 
     /**
@@ -126,6 +126,21 @@ public class BoundingBox {
             return haversine(this.getCenterY(),this.getCenterX(), bbx.getCenterY(), bbx.getCenterX());
 
     }
+
+    @Override
+    public String toString() {
+        return "BoundingBox{"
+                + "xMin="
+                + xmin
+                + ", xMax="
+                + xmax
+                + ", yMin="
+                + ymin
+                + ", yMax="
+                + ymax
+                + '}';
+    }
+
 
 }
 

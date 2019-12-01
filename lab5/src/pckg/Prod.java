@@ -75,20 +75,24 @@ public class Prod extends Node {
         return b.toString();
     }
     @Override
-    Node diff(Variable var) {
-        Sum r = new Sum();
-        for(int i=0;i<args.size();i++){
-            Prod m= new Prod();
-            for(int j=0;j<args.size();j++){
-                Node f = args.get(j);
-                if(j==i)m.mul(f.diff(var));
-                else m.mul(f);
+    public Node diff(Variable v)
+    {
+        Sum s = new Sum();
+        for (var i = 0; i < args.size(); i++)
+        {
+            Prod m = new Prod();
+            for (var j = 0; j < args.size(); j++)
+            {
+                Node a = args.get(j);
+                if (j != i)
+                    m.mul(a.diff(v));
+                else
+                    m.mul(a);
             }
-            if (m.isDiffZero(var)) {
-                r.add(m);
-            }
+            s.add(m);
         }
-        return r;
+        return s;
+
     }
 
     @Override

@@ -2,6 +2,8 @@ package pckg;
 
 abstract public class Node {
         int sign=1;
+
+
         Node minus(){
             sign = -1;
             return this;
@@ -11,6 +13,8 @@ abstract public class Node {
             return this;
         }
         int getSign(){return sign;}
+
+
 
         /**
          * Oblicza wartość wyrażenia dla danych wartości zmiennych

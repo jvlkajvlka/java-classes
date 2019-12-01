@@ -14,22 +14,48 @@ public class AdminUnit {
     BoundingBox bbox = new BoundingBox();
     List<AdminUnit> children;
 
+    void fixMissingValues() {
+        if (density != -1 && population != -1) {
+            return;
+        }
 
-   public String toString(){
-       StringBuilder buf = new StringBuilder(String.format(this.name, this.adminLevel, this.population, this.area, this.density));
-      return buf.toString();
-   }
+        AdminUnit parentUnit = parent;
 
-    protected void fixMissingValues(){
-        if(this.density == 0 && this.parent != null){
-            if(this.parent.density == 0) {
-                this.parent.fixMissingValues();
+        while (parentUnit != null) {
+            if (parentUnit.density == -1) {
+                parentUnit = parentUnit.parent;
+            } else {
+                break;
             }
-            this.density = this.parent.density;
         }
-        if(this.population == 0){
-            this.population = this.area*this.density;
+
+        if (parentUnit == null) {
+            return;
         }
+
+        density = parentUnit.density;
+        population = area * density;
+    }
+
+    @Override
+    public String toString() {
+        return "AdminUnit{"
+                + "name='"
+                + name
+                + '\''
+                + ", adminLevel="
+                + adminLevel
+                + ", population="
+                + population
+                + ", area="
+                + area
+                + ", density="
+                + density
+                + ", parent="
+                + parent
+                + ", bbox="
+                + bbox
+                + '}';
     }
 
 }
