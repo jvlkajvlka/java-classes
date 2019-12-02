@@ -1,43 +1,29 @@
 package pckg;
 
 public class Power extends Node {
-    public double p;
-    public Node arg;
-    Power(Node n,double p){
-        arg = n;
-        this.p = p;
+    private Node base;
+    private double exponent;
+
+    public Power(Node base, double exponent) {
+        this.base = base;
+        this.exponent = exponent;
+    }
+
+    @Override
+    int getArgumentsCount() {
+        return 1;
     }
 
     @Override
     double evaluate() {
-        double argVal = arg.evaluate();
-        return Math.pow(argVal,p);
+        return Math.pow(base.evaluate(), exponent);
     }
 
-
-    int getArgumentsCount(){return 1;}
-
-
     @Override
-    public String toString() {
-        StringBuilder b = new StringBuilder();
-        if(sign<0)b.append("-");
-        int argSign = arg.getSign();
-        int cnt = arg.getArgumentsCount();
-        boolean useBracket = false;
-        if(argSign<0 ||cnt>1)useBracket = true;
-        String argString = arg.toString();
-        if(useBracket)b.append("(");
-        b.append(argString);
-        if(useBracket)b.append(")");
-        b.append("^");
-        b.append(p);
-        return b.toString();
-    }
-    @Override
-    public Node diff(Variable v)
-    {
-        return (new Prod(sign*p, new Power(arg, p - 1))).mul(arg.diff(v));
+    Node diff(Variable variable) {
+        Prod result = new Prod(sign.getValue() * exponent, new Power(base, exponent - 1));
+        result.multiply(base.diff(variable));
+        return result;
     }
 
     @Override
@@ -45,4 +31,26 @@ public class Power extends Node {
         return false;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder("");
+        boolean useParentheses = (sign == Sign.MINUS || base.getArgumentsCount() > 0);
+
+        builder.append(sign.getStringValue());
+
+        if (useParentheses) {
+            builder.append("(");
+        }
+
+        builder.append(base.toString());
+
+        if (useParentheses) {
+            builder.append(")");
+        }
+
+        builder.append("^");
+        builder.append(NODE_FORMAT.format(exponent));
+
+        return builder.toString();
+    }
 }

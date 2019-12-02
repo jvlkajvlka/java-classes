@@ -1,30 +1,24 @@
 package pckg;
 
 public class Variable extends Node {
-    String name;
-    Double value;
-    Variable(String name){
+    private String name;
+    private double value;
+
+    public Variable(String name) {
         this.name = name;
     }
-    void setValue(double d){
-        value = d;
-    }
 
-
-    @Override
-    double evaluate() {
-        return sign*value;
-    }
-
-
-    @Override
-    public String toString() {
-        String sgn=sign<0?"-":"";
-        return sgn+name;
+    public void setValue(double value) {
+        this.value = value;
     }
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    double evaluate() {
+        return sign.getValue() * value;
     }
 
     @Override
@@ -40,5 +34,8 @@ public class Variable extends Node {
         return new Constant(0);
     }
 
-
+    @Override
+    public String toString() {
+        return sign.getStringValue() + name;
+    }
 }

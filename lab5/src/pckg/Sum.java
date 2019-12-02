@@ -1,89 +1,90 @@
 package pckg;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.StringJoiner;
+import java.util.stream.Collectors;
 
 public class Sum extends Node {
+    private List<Node> args = new ArrayList<>();
 
-    List<Node> args = new ArrayList<>();
+    public Sum() {}
 
-    Sum(){}
-
-    Sum(Node n1, Node n2){
-        args.add(n1);
-        args.add(n2);
+    public Sum(Node... nodes) {
+        this.add(nodes);
     }
 
+    public Sum(double... constants) {
+        this.add(constants);
+    }
 
-    Sum add(Node n){
-        args.add(n);
+    public Sum(double constant, Node node) {
+        this.add(constant, node);
+    }
+
+    public Sum add(Node... nodes) {
+        args.addAll(Arrays.asList(nodes));
         return this;
     }
 
-    Sum add(double c){
-        args.add(new Constant(c));
+    public Sum add(double... constants) {
+        args.addAll(Arrays.stream(constants).mapToObj(Constant::new).collect(Collectors.toList()));
         return this;
     }
 
-    Sum add(double c, Node n) {
-        Node mul = new Prod(c,n);
-        args.add(mul);
+    public Sum add(double constant, Node node) {
+        args.add(new Prod(constant, node));
         return this;
     }
 
     @Override
     double evaluate() {
-        double result =0;
-//        oblicz sumę wartości zwróconych przez wywołanie evaluate skłądników sumy
-
-        for(Node n : args)
-        {
-            result+=n.evaluate();
-        }
-        return sign*result;
-    }
-
-    int getArgumentsCount(){return args.size();}
-
-    public String toString(){
-        StringBuilder b =  new StringBuilder();
-        if(sign<0)b.append("-(");
-        Node n;
-        //zaimplementuj
-        for(int i = 0; i<args.size(); i++) {
-            n = args.get(i);
-            if( i!=0){
-                b.append("+");
-            }
-            if (n.sign < 0) {
-                b.append("-");
-
-            }
-            b.append(n.toString());
-
-        }
-        if(sign<0)b.append(")");
-        return b.toString();
+        return sign.getValue() * args.stream().mapToDouble(Node::evaluate).sum();
     }
 
     @Override
-    public Node diff(Variable v)
-    {
-        Node zero = new Constant(0);
-        Sum cpy = new Sum();
-        for (var a : args)
-        {
-            Node d = a.diff(v);
-            if (d != zero)
-                cpy.add(d);
-        }
-        if (cpy.args.size() < 1)
-            cpy.add(zero);
-        return cpy;
+    int getArgumentsCount() {
+        return args.size();
+    }
+
+    @Override
+    Node diff(Variable variable) {
+        return new Sum(
+                args.stream()
+                        .filter(node -> !node.isDiffZero(variable))
+                        .map(node -> node.diff(variable))
+                        .toArray(Node[]::new));
     }
 
     @Override
     boolean isDiffZero(Variable variable) {
         return args.stream().allMatch(node -> node.isDiffZero(variable));
+    }
+
+    @Override
+    public String toString() {
+        if (args.size() == 0) {
+            return new Constant(0).toString();
+        }
+
+        StringBuilder builder = new StringBuilder("");
+
+        if (sign == Sign.MINUS) {
+            builder.append(sign.getStringValue());
+            builder.append("(");
+        }
+
+        StringJoiner joiner = new StringJoiner(" + ");
+        args.stream()
+                .filter(node -> !node.toString().equals("0") && !node.toString().isEmpty())
+                .forEach(node -> joiner.add(node.toString()));
+        builder.append(joiner.toString());
+
+        if (sign == Sign.MINUS) {
+            builder.append(")");
+        }
+
+        return builder.toString();
     }
 }

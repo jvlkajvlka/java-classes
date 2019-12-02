@@ -2,30 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6860eeb0-11c1-42a3-a5a3-8ce240f17757" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../lab2/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab2/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab2/lab2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab2/lab2.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab2/out/production/lab2/META-INF/lab2.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cvpackage/Document.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cvpackage/Document.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cvpackage/ListItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cvpackage/ListItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cvpackage/Paragraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cvpackage/Paragraph.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cvpackage/ParagraphWithList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cvpackage/ParagraphWithList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cvpackage/Section.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cvpackage/Section.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cvpackage/UnorderedList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cvpackage/UnorderedList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab5/out/production/lab5/pckg/Constant.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab5/out/production/lab5/pckg/Node.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab5/out/production/lab5/pckg/Power.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab5/out/production/lab5/pckg/Prod.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab5/out/production/lab5/pckg/Sum.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab5/out/production/lab5/pckg/Test.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab5/out/production/lab5/pckg/Variable.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab5/out/production/lab5/pckg/main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab5/src/pckg/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab5/src/pckg/Constant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab5/src/pckg/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab5/src/pckg/Node.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab5/src/pckg/Variable.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab5/src/pckg/Variable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab5/src/pckg/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab5/src/pckg/main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab2/.idea/workspace.xml" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

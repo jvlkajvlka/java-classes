@@ -1,42 +1,37 @@
 package pckg;
 
-abstract public class Node {
-        int sign=1;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 
+public abstract class Node {
+    Sign sign = Sign.PLUS;
 
-        Node minus(){
-            sign = -1;
-            return this;
-        }
-        Node plus(){
-            sign = 1;
-            return this;
-        }
-        int getSign(){return sign;}
+    static final double NODE_ZERO_PRECISION = 1e-10;
+    static final DecimalFormat NODE_FORMAT =
+            new DecimalFormat("#.#####", new DecimalFormatSymbols(Locale.US));
 
+    Node minus() {
+        sign = Sign.MINUS;
+        return this;
+    }
 
+    Node plus() {
+        sign = Sign.PLUS;
+        return this;
+    }
 
-        /**
-         * Oblicza wartość wyrażenia dla danych wartości zmiennych
-         * występujących w wyrażeniu
-         */
-        abstract double evaluate();
+    Sign getSign() {
+        return sign;
+    }
 
+    abstract double evaluate();
 
-        /**
-         *
-         * zwraca tekstową reprezentację wyrażenia
-         */
-        public String toString(){return "";}
+    abstract Node diff(Variable variable);
 
-        /**
-         *
-         * Zwraca liczbę argumentów węzła
-         */
-        int getArgumentsCount(){return 0;}
+    abstract boolean isDiffZero(Variable variable);
 
-        abstract Node diff(Variable var);
-
-        abstract boolean isDiffZero(Variable variable);
+    int getArgumentsCount() {
+        return 0;
+    }
 }
-

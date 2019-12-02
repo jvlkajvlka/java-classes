@@ -6,29 +6,19 @@ import java.util.Locale;
 
 public class Constant extends Node {
     double value;
-    Constant(double value){
-        this.sign = value<0?-1:1;
-        this.value = value<0?-value:value;
-    }
 
+    public Constant(double value) {
+        this.sign = Sign.parse(value);
+        this.value = Math.abs(value);
+    }
 
     @Override
     double evaluate() {
-        return sign*value;
+        return sign.getValue() * value;
     }
 
     @Override
-    public String toString() {
-        String sgn=sign<0?"-":"";
-//        return sgn+Double.toString(value);
-        DecimalFormat format = new DecimalFormat("0.#####",new DecimalFormatSymbols(Locale.US)); //Stosując DecimalFormat pozbędziemy się niepotrzebnych zer na końcu wartości double.
-
-        return sgn+format.format(value);
-    }
-
-    @Override
-    public Node diff(Variable v)
-    {
+    Node diff(Variable variable) {
         return new Constant(0);
     }
 
@@ -37,5 +27,21 @@ public class Constant extends Node {
         return true;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder("");
 
+        if (sign == Sign.MINUS) {
+            builder.append("(");
+            builder.append(sign.getStringValue());
+        }
+
+        builder.append(NODE_FORMAT.format(value));
+
+        if (sign == Sign.MINUS) {
+            builder.append(")");
+        }
+
+        return builder.toString();
+    }
 }
