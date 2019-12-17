@@ -67,8 +67,13 @@ public class Prod extends Node {
 
     @Override
     boolean isDiffZero(Variable variable) {
-        return args.stream().anyMatch(node -> (node instanceof Constant && node.evaluate() == 0));
+        return args.stream().anyMatch(node -> node instanceof Constant && node.evaluate() == 0);
     }
+
+    // x -> x > 5
+    // public typ funckja(x) {
+    //   return x > 5;
+    // }
 
     @Override
     public String toString() {

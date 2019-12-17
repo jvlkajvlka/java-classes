@@ -15,7 +15,7 @@ public class Power extends Node {
     }
 
     @Override
-    double evaluate() {
+    double evaluate() { //zwraca warto
         return Math.pow(base.evaluate(), exponent);
     }
 
