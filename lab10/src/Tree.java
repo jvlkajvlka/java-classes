@@ -9,10 +9,11 @@ public class Tree {
 
 
     Tree() {
+        drawTrunk();
         dramTree();
         drawBubble();
         drawStar();
-        drawTrunk();
+
 
     }
 

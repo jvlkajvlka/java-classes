@@ -15,7 +15,7 @@ public class DrawPanel extends JPanel {
     Random generator = new Random();
 
     DrawPanel(){
-        setBackground(new Color(3,215,252));
+        setBackground(new Color(0,0,182));
         setOpaque(true);
         Tree tree = new Tree();
         shapes.addAll(tree.treeShapes);
@@ -28,16 +28,54 @@ public class DrawPanel extends JPanel {
 
     public void paintComponent(Graphics g){
         super.paintComponent(g);
-
-        g.setFont(new Font("Monotype Corsiva", Font.BOLD, 60));
-        g.setColor(new Color(121,126,149));
-        g.drawString("Merry Christmass",20,80);
         for(XmasShape s:shapes){
             s.draw((Graphics2D)g);
          }
+        drawSnowman(g);
+        drawBackground(g);
+        drawXmasString(g);
 
 
 
     }
 
+    public void drawSnowman(Graphics g){
+
+        final int MID = 150;
+        final int TOP = 320;
+
+        g.setColor (Color.white);
+        g.fillOval (MID-20, TOP, 40, 40);
+        g.fillOval (MID-35, TOP+35, 70, 50);
+        g.fillOval (MID-50, TOP+80, 100, 60);
+
+        g.setColor (Color.black);
+        g.fillOval (MID-10, TOP+10, 5, 5);
+        g.fillOval (MID+5, TOP+10, 5, 5);
+
+        g.drawArc (MID-10, TOP+20, 20, 10, 190, 160);
+
+        g.drawLine (MID-25, TOP+60, MID-50, TOP+40);
+        g.drawLine (MID+25, TOP+60, MID+55, TOP+60);
+
+        g.drawLine (MID-20, TOP+5, MID+20, TOP+5);
+        g.fillRect (MID-15, TOP-20, 30, 25);
+
+    }
+
+    public static void drawBackground(Graphics g){
+        final int MID = -100;
+        final int TOP = 450;
+        g.setColor (Color.white);
+        g.fillOval (MID-20, TOP+15, 1000, 620);
+        g.setColor (new Color(204,204,204));
+        g.fillOval (MID-20, TOP, 600, 400);
+        g.setColor (new Color(240,240,240));
+        g.fillOval (MID+300, TOP+15, 1000, 620);
+    }
+    public static void drawXmasString(Graphics g){
+        g.setFont(new Font("Monotype Corsiva", Font.BOLD, 60));
+        g.setColor(new Color(225,175,55));
+        g.drawString("Merry Christmas",20,80);
+    }
 }
