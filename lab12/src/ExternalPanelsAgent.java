@@ -5,6 +5,10 @@ public class ExternalPanelsAgent extends Thread{
 
     private final ElevatorCar elevatorCar;
 
+    ExternalPanelsAgent(ElevatorCar elevatorCar) {
+        this.elevatorCar = elevatorCar;
+    }
+
     static class ExternalCall{
         private final int atFloor;
         private final boolean directionUp;
@@ -18,7 +22,12 @@ public class ExternalPanelsAgent extends Thread{
 
     public void run(){
         for(;;){
-            ExternalCall ec = ec = input.take();
+            ExternalCall ec = null;
+            try {
+                ec = ec = input.take();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             // ignorujemy wezwanie na piętro, na którym winda się znajduje
             if(ec.atFloor==elevatorCar.getFloor())continue;
             // dodajemy do jednej z tablic zgłoszeń

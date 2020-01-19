@@ -1,47 +1,67 @@
-public class ElevatorCar extends Thread{
+public class ElevatorCar extends Thread {
 
-    int floor=0;
+    int floor = 0;
 
     public int getFloor() {
         return floor;
     }
 
-    enum Tour {UP, DOWN};
+    enum Tour {UP, DOWN}
+
+    ;
     Tour tour = Tour.UP;
-    enum Movement {STOP,MOVING};
+
+    enum Movement {STOP, MOVING}
+
+    ;
     Movement movementState = Movement.STOP;
 
-    public void run(){
-        for(;;){
+    public void run() {
+        for (; ; ) {
             //sleep(500);
-            if(movementState == Movement.STOP && tour == Tour.DOWN){
-                if(!ElevatorStops.get().hasStopBelow(floor))tour = Tour.UP;
+            if (movementState == Movement.STOP && tour == Tour.DOWN) {
+                if (!ElevatorStops.get().hasStopBelow(floor)) tour = Tour.UP;
                 else movementState = Movement.MOVING;
                 continue;
             }
-            if(movementState == Movement.STOP && tour == Tour.UP){
-                // ???
+            if (movementState == Movement.STOP && tour == Tour.UP) {
+                if (!ElevatorStops.get().hasStopAbove(floor)) tour = Tour.DOWN;
+                else movementState = Movement.MOVING;
+                continue;
             }
-            if(movementState == Movement.MOVING && tour == Tour.DOWN){
-                if(floor> ElevatorStops.get().getMinSetFloor()){
+            if (movementState == Movement.MOVING && tour == Tour.DOWN) {
+                if (floor > ElevatorStops.get().getMinSetFloor()) {
                     floor--;
-                    System.out.println("Floor"+floor);
-                }else{
+                    System.out.println("Floor" + floor);
+                } else {
                     movementState = Movement.STOP;
                     tour = Tour.UP;
                 }
-                if(ElevatorStops.get().whileMovingDownSholudStopAt(floor)|| floor==ElevatorStops.get().getMinSetFloor()){
-                    movementState=Movement.STOP;
+                if (ElevatorStops.get().whileMovingDownSholudStopAt(floor) || floor == ElevatorStops.get().getMinSetFloor()) {
+                    movementState = Movement.STOP;
                     ElevatorStops.get().clearStopDown(floor);
                     System.out.println("STOP");
                 }
                 continue;
             }
-            if(movementState == Movement.MOVING && tour == Tour.UP){
-                // ???
-            }
+            if (movementState == Movement.MOVING && tour == Tour.UP) {
+                if (floor > ElevatorStops.get().getMaxSetFloor()) {
+                    floor++;
+                    System.out.println("Floor" + floor);
+                } else {
+                    movementState = movementState.STOP;
+                    tour = Tour.DOWN;
+                }
+                if (ElevatorStops.get().whileMovingUpSholudStopAt(floor) || floor == ElevatorStops.get().getMaxSetFloor()) {
+                    movementState = Movement.STOP;
+                    if (floor == ElevatorStops.get().getMaxSetFloor()) {
+                        ElevatorStops.get().clearStopDown(floor);
+                    }
+                    ElevatorStops.get().clearStopUp(floor);
+                    System.out.println("STOP");
+                }
 
+            }
         }
     }
-
 }

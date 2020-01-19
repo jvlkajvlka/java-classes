@@ -21,6 +21,23 @@ public class InternalPanelAgent extends Thread {
             // odczytaj wezwanie z kolejki
             // w zależności od aktualnego piętra, na którym jest winda,
             // umieść przystanek w odpowiedniej tablicy ''EleveatorStops''
+            for (; ; ) {
+                InternalCall ic = null;
+                try {
+                    ic = input.take();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                if (ic == null) return;
+                if (ic.toFloor == elevatorCar.getFloor()) continue;
+                //w zależności od aktualnego piętra, na którym jest winda,
+                //umieszczamy przystanek w odpowiedniej tablicy 'ElevatorStops'
+                if (ic.toFloor > elevatorCar.getFloor()) {
+                    ElevatorStops.get().setLiftStopUp(ic.toFloor);
+                } else {
+                    ElevatorStops.get().setLiftStopDown(ic.toFloor);
+                }
+            }
         }
     }
 

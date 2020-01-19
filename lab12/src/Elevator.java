@@ -29,7 +29,7 @@ public class Elevator {
     }
 
     // miesjce na kod testowy
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         init();
         makeExternalCall(4,false);
         Thread.currentThread().sleep(100);
