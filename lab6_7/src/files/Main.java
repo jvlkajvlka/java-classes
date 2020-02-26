@@ -29,7 +29,7 @@ public class Main {
 //        try {
 //        AdminUnitList ls = new AdminUnitList();
 //        ls.read("admin-units.csv");
-//         ls.list(System.out, 0, 5);
+//        ls.list(System.out, 0, 5);
 //        AdminUnit lsl = ls.units.get(1);
 //        AdminUnitList Lsl = ls.getNeighbors(lsl, 100);
 //        Lsl.list(System.out);
@@ -45,21 +45,21 @@ public class Main {
 
 
         //----------------test adminUnitQuery---------------------//
-        AdminUnitQuery query = new AdminUnitQuery()
-                .selectFrom(ls)
-                .where(a->a.area>1000)
-                .or(a->a.name.startsWith("Sz"))
-                .sort((a,b)->Double.compare(a.area,b.area))
-                .limit(100);
-        query.execute().list(System.out);
+//        AdminUnitQuery query = new AdminUnitQuery()
+//                .selectFrom(ls)
+//                .where(a->a.area>1000)
+//                .or(a->a.name.startsWith("Sz"))
+//                .sort((a,b)->Double.compare(a.area,b.area))
+//                .limit(100);
+//        query.execute().list(System.out);
 
 
 
-//       ls.list(System.out, 0, 100);
-//        ls.filter(a->a.name.startsWith("Ż")).sortInplaceByArea().list(System.out);
-        // ls.filter(a -> a.population < 1).filter(a -> a.name.startsWith("H")).list(System.out);
-        //ls.filter(a -> a.name.startsWith("W") || a.name.endsWith("o")).list(System.out);
-        //ls.filter(a -> a.name.startsWith("Żu") && a.name.endsWith("e"), 1, 3).list(System.out);
+       ls.list(System.out, 0, 100);
+        ls.filter(a->a.name.startsWith("Ż")).sortInplaceByArea().list(System.out);
+        ls.filter(a -> a.population < 1).filter(a -> a.name.startsWith("H")).list(System.out);
+        ls.filter(a -> a.name.startsWith("W") || a.name.endsWith("o")).list(System.out);
+        ls.filter(a -> a.name.startsWith("Żu") && a.name.endsWith("e"), 1, 3).list(System.out);
 
 
     }

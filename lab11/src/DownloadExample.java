@@ -14,18 +14,13 @@ public class DownloadExample {
 
     static class Downloader implements Runnable{
         private final String url;
-
-
         Downloader(String url){
             this.url = url;
         }
 
         public void run(){
-
             int lastIndex = url.lastIndexOf("/");
             String fileName=url.substring(lastIndex+1,url.length());
-
-
             try(InputStream in = new URL(url).openStream(); FileOutputStream out = new FileOutputStream(fileName) ){
                 for(;;){
                     int c = in.read();
@@ -50,7 +45,6 @@ public class DownloadExample {
         double t1 = System.nanoTime()/1e6;
         for(String url:toDownload){
             new Downloader(url).run();
-
         }
         double t2 = System.nanoTime()/1e6;
         System.out.printf(Locale.US,"t2-t1=%f\n",t2-t1);
